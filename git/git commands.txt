@@ -11,6 +11,12 @@ git init
 git add [name_of_file]
 git add . # To start tracking all files in the folder.
 
+# If you want to unstage files (remove add command), you can just use either:
+
+git reset [commit] -- [file_path]
+or
+git rm --cached [file_name]
+
 # Now it's time to commit changes
 git commit -m "Write your primary comment here" -m "Write your secondary comment here"
 
@@ -46,5 +52,56 @@ git push # to push the uncommit on github
 # And what if I've just wrote the wrong comment to the commit?
 
 git rebase -i HEAD~[N] # N = number of last commits that you want to analyze.
+# Through git editor (VIM in this case will tell you to choose which file you want to change the comment to) you will
+# be able to select which files you would like to change the comments to!
 
+# First press "i" to make changes to the file.
+# we the changes are made, press "esc" and type on the bottom ":qw", which tells VIM to quit and save the changes to the file.
 
+# another VIM editor will appear: now you can change the comment and save them using the same procedure as before.
+
+# IMPORTANT: "GIT REBASE" WILL ALLOW YOU TO REMOVE COMMITS STRAIGHT AWAY! 
+# You just neew to follow the above procedure and choose "delete" instead of "reword"
+
+# What if we want to change the order of the commits?
+# We can use:
+git rebase -i HEAD~[N]
+
+# and modify the order of the commits on top by copying and pasting in the right order, and using the (default) keyword "pick".
+
+# Using git rebase it is possible to squash or fixup commits!
+
+#------------------------------------------------------------------------------------------#
+#                                           BRANCHES                                       #
+#------------------------------------------------------------------------------------------#
+
+#How to manage branches? Easy... using
+
+git branch
+git branch
+git switch
+
+# If you want to create a new branch you can use the following options:
+
+git branch [new_branch_name]
+git checkout [new_branch_name]
+
+# If you want to rename it LOCALLY:
+git branch -m new-name
+
+# If you want to rename it REMOTELY:
+git remote remove [remote name]
+
+# In addition, it is possible to delete branches by using:
+git branch -d [branch_name] # ----> LOCALLY
+git push [remote_project] --delete [branch_name] # ----> REMOTELY
+
+# MERGE CORRECT BRANCHES
+
+git status # --> Check if you are in the receiving branch.
+git merge X # --> X is the branch that you want to merge into the receiving branch.
+
+# PULL DATA FROM GITHUB!
+
+If somebody has updated the files and uploaded them on github, you would like to update your local code according to the latest changes!
+git pull origin [branch-name]
