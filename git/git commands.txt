@@ -1,0 +1,50 @@
+# Place yourself on the desired folder.
+cd [folder_path]
+
+# If you want to create another folder via the terminal
+mkdir [name_of_folder_to_create]
+
+# Tell git that u want that folder to be a git folder
+git init
+
+# If you already have files in the folder, those are untracked. Therefore, you have to to track them using "git add ..."
+git add [name_of_file]
+git add . # To start tracking all files in the folder.
+
+# Now it's time to commit changes
+git commit -m "Write your primary comment here" -m "Write your secondary comment here"
+
+# However, all these changes have been made locally. we would like to push everything on GitHub now.
+# first, we have to add an origin:
+
+git remote add origin https://github.com/[GitHub account name]/[Repository name].git # When you create the folder on GitHub, this command is automatically displayed to you.
+
+# Rename the current branch to the desired name:
+git branch -m [new_branch_name]
+
+# Now it's time to push using:
+git push -u origin main # Assuming that the branch was renamed as "main"
+
+# IMPORTANT NOTE: the -u (--set-upstream) option has been specified. The current branch is linked to the remote branch
+# so that you don't have to specify again where you want to push the updates. Next time you can just run:
+
+git push
+
+# OOPS! Did you commit something by mistake? No problem!
+# Git allows you to uncommit changes!
+
+First, run:
+git log (the option --oneline is useful to have a compacted view of the commits, but not for this purpose).
+
+# Save the hash of the commit and run
+
+git revert [hash]
+git push # to push the uncommit on github
+
+# Note that you can now run git log again, and you will see the uncommit.
+
+# And what if I've just wrote the wrong comment to the commit?
+
+git rebase -i HEAD~[N] # N = number of last commits that you want to analyze.
+
+
